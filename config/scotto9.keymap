@@ -8,6 +8,71 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    behaviors {
+        cmd_1: cmd_1_macro {
+            compatible = "zmk,behavior-macro";
+            label = "CMD_1";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(N1))>;
+        };
+
+        cmd_2: cmd_2_macro {
+            compatible = "zmk,behavior-macro";
+            label = "CMD_2";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(N2))>;
+        };
+
+        cmd_3: cmd_3_macro {
+            compatible = "zmk,behavior-macro";
+            label = "CMD_3";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(N3))>;
+        };
+
+        cmd_4: cmd_4_macro {
+            compatible = "zmk,behavior-macro";
+            label = "CMD_4";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(N4))>;
+        };
+
+        cmd_5: cmd_5_macro {
+            compatible = "zmk,behavior-macro";
+            label = "CMD_5";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(N5))>;
+        };
+
+        cmd_6: cmd_6_macro {
+            compatible = "zmk,behavior-macro";
+            label = "CMD_6";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(N6))>;
+        };
+
+        cmd_7: cmd_7_macro {
+            compatible = "zmk,behavior-macro";
+            label = "CMD_7";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(N7))>;
+        };
+
+        cmd_8: cmd_8_macro {
+            compatible = "zmk,behavior-macro";
+            label = "CMD_8";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(N8))>;
+        };
+
+        cmd_9: cmd_9_macro {
+            compatible = "zmk,behavior-macro";
+            label = "CMD_9";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(N9))>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -16,13 +81,13 @@
             // Once verified, we can switch back to Cmd+Opt combos.
             bindings = <
                 // Row 1 (Top Row) - 7, 8, 9
-                &kp N7  &kp N8  &kp N9
+                &cmd_7  &cmd_8  &cmd_9
 
                 // Row 2 (Middle Row) - 4, 5, 6
-                &kp N4  &kp N5  &kp N6
+                &cmd_4  &cmd_5  &cmd_6
 
                 // Row 3 (Bottom Row) - 1, 2, 3
-                &kp N1  &kp N2  &kp N3
+                &cmd_1  &cmd_2  &cmd_3
             >;
         };
     };
