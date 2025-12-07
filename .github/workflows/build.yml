@@ -7,10 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: zmkfirmware/zmk-build-arm:2.5
-    name: Build
+    name: Build PNCATEHO right
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Cache west modules
         uses: actions/cache@v2
         env:
@@ -27,23 +28,31 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+
       - name: West Init
         run: west init -l config
+
       - name: West Update
         run: west update
+
       - name: West Zephyr export
         run: west zephyr-export
-      - name: West Build (KEYBOARD_TITLE)
-        run: west build -s zmk/app -b BOARD_NAME -- -DSHIELD=SHIELD_NAME -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-      - name: KEYBOARD_TITLE DTS File
+
+      - name: West Build (PNCATEHO right)
+        run: west build -s zmk/app -b promicro_nrf52840 -- -DSHIELD=PNCATEHO_right -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+
+      - name: PNCATEHO right DTS File
         if: ${{ always() }}
-        run: cat -n build/zephyr/BOARD_NAME.dts.pre.tmp
-      - name: KEYBOARD_TITLE Kconfig file
+        run: cat -n build/zephyr/promicro_nrf52840.dts.pre.tmp
+
+      - name: PNCATEHO right Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
+
       - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 SHIELD_NAME_BOARD_NAME.uf2
-      - name: Archive (KEYBOARD_TITLE)
+        run: cp build/zephyr/zmk.uf2 PNCATEHO_right_promicro_nrf52840.uf2
+
+      - name: Archive (PNCATEHO right)
         uses: actions/upload-artifact@v2
         with:
           name: firmware
-          path: SHIELD_NAME_BOARD_NAME.uf2
+          path: PNCATEHO_right_promicro_nrf52840.uf2
