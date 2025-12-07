@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: zmkfirmware/zmk-build-arm:stable
-    name: Build PNCATEHO right
+    name: Build PNCATEHO
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,18 +38,18 @@ jobs:
       - name: West Zephyr export
         run: west zephyr-export
 
-      - name: West Build (PNCATEHO right)
-        run: west build -s zmk/app -b nice_nano_v2 -- -DSHIELD=PNCATEHO_right -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+      - name: West Build (PNCATEHO)
+        run: west build -s zmk/app -b nice_nano_v2 -- -DSHIELD=PNCATEHO -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
 
-      - name: PNCATEHO right DTS File
+      - name: PNCATEHO DTS File
         if: ${{ always() }}
         run: cat -n build/zephyr/nice_nano_v2.dts.pre.tmp
 
-      - name: PNCATEHO right Kconfig file
+      - name: PNCATEHO Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
 
       - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 PNCATEHO_right_nice_nano_v2.uf2
+        run: cp build/zephyr/zmk.uf2 PNCATEHO_nice_nano_v2.uf2
 
-      - name: Archive (PNCATEHO right)
+      - name: Archive (PNCATEHO)
         uses: actions/upload-artifact@v4
