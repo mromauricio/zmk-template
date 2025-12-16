@@ -4,4 +4,4 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "PNCATEHO.dtsi"
+#include "pncateho.dtsi"
