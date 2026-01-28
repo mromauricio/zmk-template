@@ -8,13 +8,4 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Build ZMK
-        uses: zmkfirmware/zmk-build-action@v1
-        with:
-          board: bt65
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
